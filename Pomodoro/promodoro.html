@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="promodoro.css">
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700,900|Roboto:400,500,700,900&display=swap">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Pomodoro</title>
+</head>
+
+<body class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+
+
+
+      <div class="row">
+        <div class="col-2 leftbar nav flex-column nav-pills p-0 ">
+          <a class="nav-link mission active " href="#"><i class="fas fa-list-ul fa-2x "></i></a>
+          <a class="nav-link analytics" href="#"><i class="far fa-chart-bar fa-2x"></i></a>
+          <a class="nav-link rington" href="#"><i class="fas fa-music fa-2x"></i></a>
+          <p class="barlogo">Pomodoro</p>
+        </div>
+
+
+        <div class="col-10 listpart">
+          <p class="">The thing is doing now</p>
+          <p class="">first</p>
+          <p class="">second</p>
+          <p class="">third</p>
+          <p class="">break time</p>
+          <p class="">next</p>
+          <div class="adddiv f18">
+            <button class=" addlist"><i class="fas fa-plus"></i></button><input type="text" placeholder="增加新任務"> </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 timerpart">
+      <div class="row">
+        <div class="col-6">
+          <span class="f18">今日任務已完成</span><br>
+          <span class="f36">4/15</span>
+        </div>
+        <div class="col-6 text-right">
+          <span class="f18">2019/07/09</span><br>
+          <span class="f36">13:00</span>
+        </div>
+      </div>
+      <div class="timer">
+        <div class="timercontent">
+          <h1 class="timernumber">25:00</h1>
+          <button class="timerstop"><i class="far fa-stop-circle"></i>　暫停</button>
+          <button class="timerstar">開始　<i class="fas fa-play"></i></button>
+          <button class="timercancel"><i class="fas fa-times"></i>　作廢</button>
+        </div>
+      </div>
+      <ul class="now">
+        <li>the thing is doing now</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="pomodoro.js">
+</body>
+
+</html>

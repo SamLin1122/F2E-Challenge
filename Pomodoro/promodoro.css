@@ -1,0 +1,115 @@
+body.container-fluid {
+  font-family: 'Noto Sans TC';
+  font-family: 'Roboto', sans-serif;
+}
+
+.leftbar {
+  background-color: #FF7575;
+  height: 50rem;
+  color: #fff;
+}
+
+.barlogo {
+  transform: rotate(-90deg);
+  margin: 0;
+  font-size: 18px;
+  justify-content: left
+}
+
+.col-10.listpart {
+  background-color: #ffffff;
+  padding: 80px 70px;
+}
+
+.col-6.timerpart {
+  background-color: #f9f9f9;
+  padding: 80px 70px;
+}
+
+.row .nav-pills .nav-link.active {
+  color: #E54343;
+  background-color: #fff;
+}
+
+.row .nav-pills .nav-link {
+  color: #fff;
+  border-radius: 0%;
+}
+
+.mission {
+  background: #CB2424;
+}
+
+.analytics {
+  background: #E54343;
+}
+
+.rington {
+  background: #F85A5A;
+}
+
+.nav-link {
+  text-align: center
+}
+
+.timer {
+  width: 400px;
+  height: 400px;
+  border: 3px solid #FF6D6D;
+  border-radius: 50%;
+  margin: 0 auto;
+  background-color:#FFEBEB ;
+  margin: 70px auto 130px auto;
+}
+.addlist{
+  color:#949494;
+}
+.adddiv{
+  background-color: #F9F9F9;
+  width: auto;
+  height: 300px;
+  border-radius: 5px;
+  margin:0;
+  padding: 25px 30px
+}
+input{
+  border: none;
+  background: #f9f9f9;
+}
+.timercontent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.timercontent .timerstar,.timercontent .timernumber{
+  color: #E54343;
+}
+.timerstop,.timercancel{
+  color:#ffffff;
+  font-weight: 400
+}
+.timernumber{
+  margin-top: 30%;
+  font-size: 100px;
+  font-weight: 700;
+}
+span.f18{
+font-size: 18px;
+color: #949494;
+}
+span.f36{
+  color: #949494;
+  font-size: 36px;
+}
+.now{
+  font-size:26px;
+  color: #969696;
+}
+button{
+  border: none;
+  background-color:rgba(0,0,0,0)
+}
+.timerstar{
+  color: #FF6D6D
+}
