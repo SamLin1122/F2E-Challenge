@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="promodoro.css">
-
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700,900|Roboto:400,500,700,900&display=swap">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
@@ -18,34 +17,38 @@
 <body class="container-fluid">
   <div class="row">
     <div class="col-6">
+      <div class="row hhh">
 
-
-
-      <div class="row">
-        <div class="col-2 leftbar nav flex-column nav-pills p-0 ">
-          <a class="nav-link mission active " href="#"><i class="fas fa-list-ul fa-2x "></i></a>
-          <a class="nav-link analytics" href="#"><i class="far fa-chart-bar fa-2x"></i></a>
-          <a class="nav-link rington" href="#"><i class="fas fa-music fa-2x"></i></a>
-          <p class="barlogo">Pomodoro</p>
+        <!-- ---------------------------------bar--------------------------------- -->
+        <div class="col-1 leftbar d-flex flex-column p-0 hhh">
+          <a class="nav-link mission active " href="#"><i class="fas fa-list-ul  "></i></a>
+          <a class="nav-link analytics" href="#"><i class="far fa-chart-bar "></i></a>
+          <a class="nav-link musicplayer " href="#"><i class="fas fa-music "></i></a>
+          <p class="nav-link barlogo ">Pomodoro</p>
         </div>
 
-
-        <div class="col-10 listpart">
+        <!-- ---------------------------------list--------------------------------- -->
+        <div class="col-11 listpart ">
+          <div>
           <p class="">The thing is doing now</p>
           <p class="">first</p>
           <p class="">second</p>
           <p class="">third</p>
           <p class="">break time</p>
           <p class="">next</p>
-          <div class="adddiv f18">
-            <button class=" addlist"><i class="fas fa-plus"></i></button><input type="text" placeholder="增加新任務"> </div>
+        </div class="textinput ">
+          <div class="adddiv f18 d-flex ">
+            <div> 
+              <button class="addlist"><i class="fas fa-plus"></i></button><input type="text" placeholder="增加新任務">
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="col-6 timerpart">
-      <div class="row">
-        <div class="col-6">
+    <!-- ---------------------------------timer--------------------------------- -->
+    <div class="col-6 timerpart ">
+      <div class="row ">
+        <div class="col-6 mb-2">
           <span class="f18">今日任務已完成</span><br>
           <span class="f36">4/15</span>
         </div>
@@ -56,13 +59,13 @@
       </div>
       <div class="timer">
         <div class="timercontent">
-          <h1 class="timernumber">25:00</h1>
+          <h1 class="timernumber ">25:00</h1>
           <button class="timerstop"><i class="far fa-stop-circle"></i>　暫停</button>
           <button class="timerstar">開始　<i class="fas fa-play"></i></button>
           <button class="timercancel"><i class="fas fa-times"></i>　作廢</button>
         </div>
       </div>
-      <ul class="now">
+      <ul class="now mt-2">
         <li>the thing is doing now</li>
       </ul>
     </div>

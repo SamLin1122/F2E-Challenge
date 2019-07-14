@@ -1,39 +1,25 @@
 body.container-fluid {
   font-family: 'Noto Sans TC';
   font-family: 'Roboto', sans-serif;
+  max-width: 100%;
+  max-height: 100%
 }
+
+button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0)
+}
+
+.hhh {
+  height: 100vh;
+}
+
+
+/* ---------------------------------bar--------------------------------- */
 
 .leftbar {
   background-color: #FF7575;
-  height: 50rem;
   color: #fff;
-}
-
-.barlogo {
-  transform: rotate(-90deg);
-  margin: 0;
-  font-size: 18px;
-  justify-content: left
-}
-
-.col-10.listpart {
-  background-color: #ffffff;
-  padding: 80px 70px;
-}
-
-.col-6.timerpart {
-  background-color: #f9f9f9;
-  padding: 80px 70px;
-}
-
-.row .nav-pills .nav-link.active {
-  color: #E54343;
-  background-color: #fff;
-}
-
-.row .nav-pills .nav-link {
-  color: #fff;
-  border-radius: 0%;
 }
 
 .mission {
@@ -44,12 +30,70 @@ body.container-fluid {
   background: #E54343;
 }
 
-.rington {
+.musicplayer {
   background: #F85A5A;
+}
+
+.barlogo {
+  transform: rotate(-90deg);
+  font-size: 36px;
+  margin-top: auto;
+  margin-bottom: 5rem;
+}
+
+.row .nav-link.active {
+  color: #E54343;
+  background-color: #fff;
+}
+
+.row .nav-link {
+  color: #fff;
+  border-radius: 0%;
+  padding: 1.5rem 0;
+}
+
+.nav-link .fas, .nav-link i.far {
+  font-size: 30px;
 }
 
 .nav-link {
   text-align: center
+}
+
+
+/* ---------------------------------list--------------------------------- */
+
+.col-10.listpart {
+  background-color: #ffffff;
+  padding: 10% 5%;
+}
+
+.textinput {}
+
+.adddiv {
+  background-color: #F9F9F9;
+  width: auto;
+  height: 22.6%;
+  border-radius: 5px;
+  margin: 0;
+  padding: 25px 30px
+}
+
+.addlist {
+  color: #949494;
+}
+
+input {
+  border: none;
+  background: #f9f9f9;
+}
+
+
+/* ---------------------------------timer--------------------------------- */
+
+.col-6.timerpart {
+  background-color: #f9f9f9;
+  padding: 4% 5% 0 5%;
 }
 
 .timer {
@@ -58,58 +102,48 @@ body.container-fluid {
   border: 3px solid #FF6D6D;
   border-radius: 50%;
   margin: 0 auto;
-  background-color:#FFEBEB ;
-  margin: 70px auto 130px auto;
+  background-color: #FFEBEB;
 }
-.addlist{
-  color:#949494;
-}
-.adddiv{
-  background-color: #F9F9F9;
-  width: auto;
-  height: 300px;
-  border-radius: 5px;
-  margin:0;
-  padding: 25px 30px
-}
-input{
-  border: none;
-  background: #f9f9f9;
-}
+
 .timercontent {
   position: relative;
   width: 100%;
-  height: 100%;
   text-align: center;
+
 }
-.timercontent .timerstar,.timercontent .timernumber{
-  color: #E54343;
-}
-.timerstop,.timercancel{
-  color:#ffffff;
-  font-weight: 400
-}
-.timernumber{
+
+.timernumber {
   margin-top: 30%;
   font-size: 100px;
   font-weight: 700;
 }
-span.f18{
-font-size: 18px;
-color: #949494;
+
+.timercontent .timerstar, .timercontent .timernumber {
+  color: #E54343;
 }
-span.f36{
+
+.timerstop, .timercancel {
+  color: #ffffff;
+  font-weight: 400
+}
+
+span.f18 {
+  font-size: 18px;
+  color: #949494;
+}
+
+span.f36 {
   color: #949494;
   font-size: 36px;
 }
-.now{
-  font-size:26px;
-  color: #969696;
-}
-button{
-  border: none;
-  background-color:rgba(0,0,0,0)
-}
-.timerstar{
+
+.timerstar {
   color: #FF6D6D
+}
+
+.now {
+  display: block;
+  font-size: 26px;
+  color: #969696;
+  margin-top: auto;
 }
