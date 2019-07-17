@@ -6,81 +6,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="promodoro.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700,900|Roboto:400,500,700,900&display=swap">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700,900|Roboto:400,500,700,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="bootstrap.min.css">
   <title>Pomodoro</title>
 </head>
 
 <body class="container-fluid">
   <div class="row">
-    <div class="col-6">
+    <div class="col-05">
       <div class="row hhh">
 
         <!-- ---------------------------------bar--------------------------------- -->
-        <div class="col-1 leftbar d-flex flex-column p-0 hhh">
-          <a class="nav-link mission active " href="#"><i class="fas fa-list-ul  "></i></a>
-          <a class="nav-link analytics" href="#"><i class="far fa-chart-bar "></i></a>
-          <a class="nav-link musicplayer " href="#"><i class="fas fa-music "></i></a>
-          <p class="nav-link barlogo ">Pomodoro</p>
+        <div class="col-02 leftbar d-flex flex-column">
+          <a class="barlink mission active " href="#"><i class="fas fa-list-ul  "></i></a>
+          <a class="barlink analytics" href="#"><i class="far fa-chart-bar "></i></a>
+          <a class="barlink musicplayer " href="#"><i class="fas fa-music "></i></a>
+          <p class="barlogo ">Pomodoro</p>
         </div>
 
         <!-- ---------------------------------list--------------------------------- -->
-        <div class="col-11 listpart ">
-          <div>
-          <p class="">The thing is doing now</p>
-          <p class="">first</p>
-          <p class="">second</p>
-          <p class="">third</p>
-          <p class="">break time</p>
-          <p class="">next</p>
-        </div class="textinput ">
-          <div class="adddiv f18 d-flex ">
-            <div> 
-              <button class="addlist"><i class="fas fa-plus"></i></button><input type="text" placeholder="增加新任務">
+        <div class="col-010 listpart ">
+          <div class="listcontainer">
+            <ul class="list">
+              <li class="listline first">The thing is doing now</li>
+              <li class="listline">first</li>
+              <li class="listline">second</li>
+              <li class="listline">third</li>
+              <li class="listline break">break time</li>
+              <li class="listline">next</li>
+              <li class="listline end"></li>
+            </ul>
+          </div>
+          <div class="textcontainter">
+            <div>
+              <i class="fas fa-plus addlist"></i><input type="text" placeholder="增加新任務">
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- ---------------------------------timer--------------------------------- -->
-    <div class="col-6 timerpart ">
-      <div class="row ">
-        <div class="col-6 mb-2">
+    <div class="col-07 timerpart ">
+      <div class="row timetopcontainer">
+        <div class="col-6 ">
           <span class="f18">今日任務已完成</span><br>
           <span class="f36">4/15</span>
         </div>
         <div class="col-6 text-right">
-          <span class="f18">2019/07/09</span><br>
-          <span class="f36">13:00</span>
+          <span class="f18">2019/07/07</span><br>
+          <span class="f36">07:07</span>
         </div>
       </div>
-      <div class="timer">
-        <div class="timercontent">
-          <h1 class="timernumber ">25:00</h1>
+      <div class="timercircle">
+        <div class="timercontainer">
+          <h1 class="timervalue">25:00</h1>
           <button class="timerstop"><i class="far fa-stop-circle"></i>　暫停</button>
           <button class="timerstar">開始　<i class="fas fa-play"></i></button>
           <button class="timercancel"><i class="fas fa-times"></i>　作廢</button>
         </div>
       </div>
-      <ul class="now mt-2">
-        <li>the thing is doing now</li>
-      </ul>
+      <div class="bottontimercontainer ">
+        <ul>
+          <li class="timernow">the thing is doing now</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="pomodoro.js">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="pomodoro.js"></script>
 </body>
 
 </html>
