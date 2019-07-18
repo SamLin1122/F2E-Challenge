@@ -35,8 +35,8 @@
               <li class="listline">second</li>
               <li class="listline">third</li>
               <li class="listline break">break time</li>
-              <li class="listline">next</li>
-              <li class="listline end"></li>
+              <li class="listline end">next</li>
+              <!-- <li class="listline end"></li> -->
             </ul>
           </div>
           <div class="textcontainter">
@@ -48,28 +48,30 @@
       </div>
     </div>
     <!-- ---------------------------------timer--------------------------------- -->
-    <div class="col-07 timerpart ">
-      <div class="row timetopcontainer">
+    <div class="col-07 timerpart tran">
+      <div class="row timetopcontainer fontgray">
         <div class="col-6 ">
           <span class="f18">今日任務已完成</span><br>
-          <span class="f36">4/15</span>
+          <span class="f36 listnumber">4/15</span>
         </div>
         <div class="col-6 text-right">
-          <span class="f18">2019/07/07</span><br>
-          <span class="f36">07:07</span>
+          <span class="f18 ymd">2019/07/07</span><br>
+          <span class="f36 hms">07:07</span>
         </div>
       </div>
-      <div class="timercircle">
+      <div class="timercircle tran">
         <div class="timercontainer">
-          <h1 class="timervalue">25:00</h1>
-          <button class="timerstop"><i class="far fa-stop-circle"></i>　暫停</button>
-          <button class="timerstar">開始　<i class="fas fa-play"></i></button>
-          <button class="timercancel"><i class="fas fa-times"></i>　作廢</button>
+          <h1 class="timervalue tran">25:00</h1>
+        </div>
+        <div class="buttonsetup">
+          <button class="timerstop tran"><i class="far fa-stop-circle"></i>　暫停</button>
+          <button class="timerstart tran">開始　<i class="fas fa-play"></i></button>
+          <button class="timercancel tran"><i class="fas fa-times"></i>　作廢</button>
         </div>
       </div>
       <div class="bottontimercontainer ">
-        <ul>
-          <li class="timernow">the thing is doing now</li>
+        <ul >
+          <li class="timernow fontgray">The thing is doing now</li>
         </ul>
       </div>
     </div>

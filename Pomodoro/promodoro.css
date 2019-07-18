@@ -1,3 +1,8 @@
+  :root {
+    --timerfontcolor: #949494;
+    --timervalue:#E54343;
+  }
+  
   html body.container-fluid, html {
     font-family: 'Roboto', 'Noto Sans TC', sans-serif;
     height: 100%;
@@ -35,8 +40,8 @@
     flex: 0 0 83%;
     max-width: 83%;
   }
-  p{
-    /* margin: 0; */
+  .tran{
+    transition: all 1s
   }
   /* ---------------------------------bar--------------------------------- */
   
@@ -101,14 +106,13 @@
   }
   
   li {
-    line-height:300%;
+    line-height: 300%;
   }
   
   .listline.first::before {
     width: 1px;
-    background-image: -webkit-linear-gradient(top, #FFf,#FFf, rgba(255, 109, 109));
-    background-image: linear-gradient(top, #FFf,#FFf, rgba(255, 109, 109));
-  
+    background-image: -webkit-linear-gradient(top, #FFf, #FFf, rgba(255, 109, 109));
+    background-image: linear-gradient(top, #FFf, #FFf, rgba(255, 109, 109));
   }
   
   .listline::before {
@@ -141,7 +145,7 @@
     height: 15px;
     left: -25px;
     background-color: #FF7575;
-    top: 25px;
+    top: 20px;
     border-radius: 50%;
     z-index: 1;
   }
@@ -171,15 +175,11 @@
     background-color: #35FBD5;
   }
   
-  .listline.end::after {
-    width: 0px;
-  }
-  
   .listline.end::before {
     content: '';
     position: absolute;
     width: 1px;
-    height: 3rem;
+    height: 10rem;
     background-image: -webkit-linear-gradient(top, #FF6D6D, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
     background-image: linear-gradient(top, #FF6D6D, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
   }
@@ -255,20 +255,33 @@
     padding-left: 1rem;
     position: relative;
   }
-  
   .timernow::before {
     content: '';
     position: absolute;
     width: 22px;
     height: 22px;
     left: -25px;
-    background-color: #969696;
+    background-color: var(--timerfontcolor);
     top: 27px;
     border-radius: 50%;
   }
+  .timernow::after {
+    content: '\25b8';
+    position: absolute;
+    font-size: 50px;
+    left: -33px;
+    display: none;
+  }
   
-  .timercontainer .timerstar, .timercontainer .timervalue {
-    color: #E54343;
+  
+  div.buttonsetup {
+    width: 70%;
+    margin: 0% auto;
+    text-align: center;
+  }
+  
+  .timerstart, .timervalue {
+    color: var(--timervalue)
   }
   
   .timerstop, .timercancel {
@@ -279,18 +292,16 @@
   
   span.f18 {
     font-size: 18px;
-    color: #949494;
     font-weight: 500;
     line-height: 27px;
   }
   
   span.f36 {
-    color: #949494;
     font-size: 36px;
     font-weight: 500;
     line-height: 42px;
   }
-  
-  .timerstar {
-    color: #FF6D6D;
+    
+  .fontgray {
+    color: var(--timerfontcolor);
   }
