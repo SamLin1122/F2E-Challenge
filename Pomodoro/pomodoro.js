@@ -1,57 +1,87 @@
 $(window).resize(function () {
-  var x = $("html").css("width");
-  var y = $("html").css("height");
-  var X = x.substr(0, x.length - 2);
-  var Y = y.substr(0, y.length - 2);
-
-  if (X < 1050 | Y < 600) {
-    $("body").css("width", "1050px");
-    $("body").css("height", "550px");
-  }
-  else {
-    $("body").css("width", X);
-    $("body").css("height", Y);
-  }
+  root.style.setProperty("--circle", $(".timercircle").css("height"))
 })
-// ------------------------todolist------------------------
+$(document).ready(function () {
+  root.style.setProperty("--circle", $(".timercircle").css("height"))
+  $(".listnumber").text(`${done}/${totallist}`)
 
-$("li.listline").on("click", function () {
-  $(".first").text($(this).text())
-  $(".timerpart").css("background", "#f9f9f9")
-  $(".timercircle").css({ "backgroundColor": "#FFEBEB", "border": "3px solid #FF6D6D" })
-  root.style.setProperty("--timerfontcolor", "#949494")
-  root.style.setProperty("--timervalue", "#E54343")
-  btswich = true
-  buttionswich()
-  i = 1500
-  $(".timervalue").text("25:00")
+  // $(".col-04 ,.col-07").addClass("d-none")
 })
-
-$("ul").on("click","li", function (e) {
-  e.stopPropagation();
-})
-$("input[type='text']").keypress(function (e) {
-  if (e.which === 13) {
-    $("ul.list").append(`<li class="listline">${this.value}</li>`);
-    $(this).val("");
-    $("li.listline").removeClass("end")
-    $("li.listline:last").addClass("end")
-  };
-})
-
-// ------------------------break------------------------
-
-$("li.listline.break").on("click", function () {
+// ------------------------backgroundsetup------------------------
+function bggreennormal() {
   i = 300
-  $(".timervalue").text("05:00")
   root.style.setProperty("--timerfontcolor", "#969696")
   root.style.setProperty("--timervalue", "#4EB6A8")
   $(".timerpart").css("background", "#f9f9f9")
   $(".timercircle").css({ "backgroundColor": "#E0FFFB", "border": "3px solid #50E3C2 " })
+  $('<style>.listline.first::after{background-color:#E0FFFB;color: #4EB6A8 ; border: 2px solid #06BCA4 }</style > ').appendTo('head')
+}
+function bggreenstart() {
+  $(".timerpart").css("background", "#E6FDF8")
+  $(".timercircle").css({ "backgroundColor": "#95E2D6", "border": "3px solid #4EB6A8" })
+  root.style.setProperty("--timervalue", "#FFF")
+}
+function bgrednormal() {
+  i = 1500
+  $(".timervalue").text("25:00")
+  $(".timerpart").css("background", "#f9f9f9")
+  $(".timercircle").css({ "backgroundColor": "#FFEBEB", "border": "3px solid #FF6D6D" })
+  root.style.setProperty("--timerfontcolor", "#949494")
+  root.style.setProperty("--timervalue", "#E54343")
+  $('<style>.listline.first::after{background-color:#FFEDED;color: #FF6D6D ; border: 2px solid #FF6D6D }</style > ').appendTo('head')
+
+}
+function bgredstart() {
+  $(".timerpart").css("background", "#FF8E8E")
+  $(".timercircle").css({ "backgroundColor": "#F65454", "border": "3px solid #BA2323" })
+  root.style.setProperty("--timerfontcolor", "#FFF")
+  root.style.setProperty("--timervalue", "#FFF")
+}
+// ------------------------todolist------------------------
+
+$("input[type='text']").keypress(function (e) {
+  if (e.which === 13) {
+    addlist()
+  };
+})
+$(".addlist").on("click", addlist)
+
+$("li.listline").on("click", function () {
+  $("li.listline.click").removeClass("click")
+  $(this).addClass("click")
+  $(".first").text($(this).text())
+  bgrednormal()
   btswich = true
   buttionswich()
-  $(".first").text($(".break").text())
+  $("li.listline").removeClass("end")
+  $("li.listline:last").addClass("end")
+  if ($(this).text() == "Break time") {
+    breaktime()
+  }
+})
+function addlist() {
+  $("ul.list").append(`<li class="listline"><span>${$("input[type='text']").val()}</span></li>`);
+  $("input[type='text']").val("");
+  $("li.listline").removeClass("end")
+  $("li.listline:last").addClass("end")
+  if ($("li.listline").length = 1) {
+    $("li.listline:first").addClass("first")
+  }
+  totallist++
+  $(".listnumber").text(`${done}/${totallist}`)
+}
+var totallist = $("li.listline").length - 1
+// ------------------------break------------------------
+function breaktime() {
+  $(".timervalue").text("05:00")
+  bggreennormal()
+  btswich = true
+  buttionswich()
+  $(".first").text("Break time")
   $(".timernow").text($(".first").text())
+}
+$("li.listline.break").on("click", function () {
+  breaktime()
 })
 // ------------------------timerbutton------------------------
 var root = document.documentElement
@@ -60,10 +90,6 @@ var btswich;
 var i = 1500
 var done = 0
 
-if ($(".timerstart").css("color") == "rgb(229, 67, 67)") {
-  i = 1500
-  $(".timervalue").text("25:00")
-}
 
 function buttionswich() {
   if (btswich) {
@@ -83,17 +109,12 @@ function buttionswich() {
 }
 
 $(".timerstart").on("click", function () {
-
+  musicplay()
   if ($(".timerstart").css("color") == "rgb(78, 182, 168)" | $(".timerpart").css("backgroundColor") == "rgb(230, 253, 248)") {
-    $(".timerpart").css("background", "#E6FDF8")
-    $(".timercircle").css({ "backgroundColor": "#95E2D6", "border": "3px solid #4EB6A8" })
-    root.style.setProperty("--timervalue", "#FFF")
+    bggreenstart()
   }
   else {
-    $(".timerpart").css("background", "#FF8E8E")
-    $(".timercircle").css({ "backgroundColor": "#F65454", "border": "3px solid #BA2323" })
-    root.style.setProperty("--timerfontcolor", "#FFF")
-    root.style.setProperty("--timervalue", "#FFF")
+    bgredstart()
   }
   btswich = false
   buttionswich()
@@ -103,6 +124,22 @@ $(".timerstart").on("click", function () {
 $(".timerstop").on("click", function () {
   btswich = true
   buttionswich()
+  musicstop()
+})
+$(".timercancel").on("click", function () {
+  btswich = true
+  buttionswich()
+  $("li.listline:first").remove()
+  $("li.listline.click").remove()
+  $("li.listline:first").addClass("first")
+  if ($("li.listline:first").css("color") == "rgb(6, 188, 164)") {
+    bggreennormal()
+  }
+  else {
+    bgrednormal()
+  }
+  $(".timernow").text($(".first").text())
+  musiccancel()
 })
 
 // ------------------------date------------------------
@@ -147,7 +184,6 @@ function timer() {
   var tv = i
   var min = Math.floor(tv / 60)
   var sec = tv - min * 60
-  // timer = setTimeout(arguments.callee, 1000)
   if ((min + "").length < 2) {
     min = "0" + min
   }
@@ -155,18 +191,95 @@ function timer() {
     sec = "0" + sec
   }
 
-  if (i == 0 | btswich == true) {
+
+  if (i == 0) {
     clearTimeout(timer)
     done++
-    $("li.listline:first").remove()
-    $("li.listline:first").addClass("first")
+    $(".listnumber").text(`${done}/${totallist}`)
+    if ($("li.listline:first").text() == "Break time") {
+      $("li.listline:first").remove()
+      $("li.listline.click").remove()
+      $("li.listline:first").addClass("first")
+      bgrednormal()
+      btswich = true
+      buttionswich()
+    }
+    else if ($("li.listline:first").text() != "Break time") {
+      breaktime()
+    }
+  }
+  else if (btswich === true) {
+    clearTimeout(timer)
   }
   else {
-    i--
     setTimeout(timer, 1000)
     $(".timervalue").text(`${min}:${sec}`)
+    i--
+  }
+}
+// ------------------------bar------------------------
+$(".mission").on("click", function () {
+  $(".listpart,.timerpart").css("display", "inline")
+  $(".l,.r").css("display", "none")
+  $(".barlink").removeClass("active")
+  $(this).addClass("active")
+})
+
+$(".analytics").on("click", function () {
+  $(".listpart,.timerpart,.l,.r").css("display", "none")
+  $(".barlink").removeClass("active")
+  $(this).addClass("active")
+})
+
+$(".musicplayer").on("click", function () {
+  $(".listpart,.timerpart").css("display", "none")
+  $(".col-05.l,.col-05.r").css("display", "inline")
+  $(".barlink").removeClass("active")
+  $(this).addClass("active")
+
+})
+$(".l,.r").css("display", "none")
+$(".listpart,.timerpart").css("display", "none")
+// --------------------------------music-------------------------------
+
+function musicplay() {
+  if ($(".first").text() == "Break time") {
+    var playmb = $("input[name='mb']:checked").val()
+    var audiomb = document.querySelector(`audio[data-music='${playmb}']`)
+    audiomb.play()
+  }
+  else {
+    var playmp = $("input[name='mp']:checked").val()
+    var audiomp = document.querySelector(`audio[data-music='${playmp}']`)
+    audiomp.play()
   }
 }
 
-// ------------------------listnumber------------------------
-$(".listnumber").text(`${done}/${$("li.listline").length}`)
+function musicstop() {
+  if ($(".first").text() == "Break time") {
+    var playmb = $("input[name='mb']:checked").val()
+    var audiomb = document.querySelector(`audio[data-music='${playmb}']`)
+    audiomb.pause()
+  }
+  else {
+    var playmp = $("input[name='mp']:checked").val()
+    var audiomp = document.querySelector(`audio[data-music='${playmp}']`)
+    // audiomp.pause()
+    audiomp.pause()
+  }
+}
+
+function musiccancel() {
+  if ($(".first").text() == "Break time") {
+    var playmb = $("input[name='mb']:checked").val()
+    var audiomb = document.querySelector(`audio[data-music='${playmb}']`)
+    // audiomb.pause()
+  audiomb.load()
+  }
+  else {
+    var playmp = $("input[name='mp']:checked").val()
+    var audiomp = document.querySelector(`audio[data-music='${playmp}']`)
+    // audiomp.pause()
+    audiomp.load()
+  }
+}

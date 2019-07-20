@@ -13,46 +13,40 @@
   <title>Pomodoro</title>
 </head>
 
-<body class="container-fluid">
-  <div class="row">
-    <div class="col-05">
-      <div class="row hhh">
-
-        <!-- ---------------------------------bar--------------------------------- -->
-        <div class="col-02 leftbar d-flex flex-column">
-          <a class="barlink mission active " href="#"><i class="fas fa-list-ul  "></i></a>
-          <a class="barlink analytics" href="#"><i class="far fa-chart-bar "></i></a>
-          <a class="barlink musicplayer " href="#"><i class="fas fa-music "></i></a>
-          <p class="barlogo ">Pomodoro</p>
-        </div>
-
-        <!-- ---------------------------------list--------------------------------- -->
-        <div class="col-010 listpart ">
-          <div class="listcontainer">
-            <ul class="list">
-              <li class="listline first">The thing is doing now</li>
-              <li class="listline">first</li>
-              <li class="listline">second</li>
-              <li class="listline">third</li>
-              <li class="listline break">break time</li>
-              <li class="listline end">next</li>
-              <!-- <li class="listline end"></li> -->
-            </ul>
-          </div>
-          <div class="textcontainter">
-            <div>
-              <i class="fas fa-plus addlist"></i><input type="text" placeholder="增加新任務">
-            </div>
-          </div>
+<body class="container-fluid p-0 m-0">
+  <div class="row hhh m-0">
+    <!-- ---------------------------------bar--------------------------------- -->
+    <div class="col-01 leftbar d-flex flex-column hhh">
+      <a class="barlink mission active" href="#"><i class="fas fa-list-ul  "></i></a>
+      <a class="barlink analytics" href="#"><i class="far fa-chart-bar "></i></a>
+      <a class="barlink musicplayer " href="#"><i class="fas fa-music "></i></a>
+      <p class="barlogo ">Pomodoro</p>
+    </div>
+    <!-- ---------------------------------list--------------------------------- -->
+    <div class="col-04 listpart ">
+      <div class="listcontainer ">
+        <ul class="list">
+          <li class="listline first"><span>The thing is doing now</span></li>
+          <li class="listline"><span>The first thing to do</span></li>
+          <li class="listline"><span>The second thing to do</span></li>
+          <li class="listline"><span>The third thing to do</span></li>
+          <li class="listline break"><span>Break time</span></li>
+          <li class="listline end"><span>The next thing to do</span></li>
+        </ul>
+      </div>
+      <div class="textcontainter">
+        <div>
+          <i class="fas fa-plus addlist"></i><input type="text" min="1" placeholder="增加新任務">
         </div>
       </div>
+
     </div>
     <!-- ---------------------------------timer--------------------------------- -->
-    <div class="col-07 timerpart tran">
+    <div class="col-07 timerpart tran ">
       <div class="row timetopcontainer fontgray">
         <div class="col-6 ">
           <span class="f18">今日任務已完成</span><br>
-          <span class="f36 listnumber">4/15</span>
+          <span class="f36 listnumber">0/6</span>
         </div>
         <div class="col-6 text-right">
           <span class="f18 ymd">2019/07/07</span><br>
@@ -70,13 +64,94 @@
         </div>
       </div>
       <div class="bottontimercontainer ">
-        <ul >
+        <ul>
           <li class="timernow fontgray">The thing is doing now</li>
         </ul>
       </div>
     </div>
-  </div>
+    <!-- ------------------------------------------------------------------------- -->
+    <div class="col-05 l ">
+      <div class="musictitle d-flex align-items-center">
+        <h2><i class="fas fa-music"></i>　鈴聲</h2>
+      </div>
+      <div class="musiccontainer">
+        <h3 class="d-flex align-items-center justify-content-between">工作鈴聲<i class="fa fa-plus"></i></h3>
+        <ul>
+          <li><input class="mr-3" type="radio" name="mp" value="0">None</li>
+          <li><input class="mr-3" type="radio" name="mp" value="1" checked>Music1</li>
+          <li><input class="mr-3" type="radio" name="mp" value="2">Music2</li>
+          <li><input class="mr-3" type="radio" name="mp" value="3">Music3</li>
+        </ul>
+      </div>
+    </div>
 
+    <div class="col-05 r ">
+      <div class="musictitle">
+      </div>
+      <div class="musiccontainer">
+        <h3 class="d-flex align-items-center justify-content-between">休息鈴聲<i class="fa fa-plus"></i></h3>
+        <ul>
+          <li><input class="mr-3" type="radio" name="mp" value="0">None</li>
+          <li><input class="mr-3" type="radio" name="mb" value="4" checked>Music4</li>
+          <li><input class="mr-3" type="radio" name="mb" value="5">Music5</li>
+        </ul>
+      </div>
+    </div>
+    <!-- ------------------------------------------------------------------------- -->
+    <div class="col-04 main">
+      <div class=" d-flex align-items-center maintitle">
+        <h2><i class="fas fa-list-ul"></i>　計畫任務</h2>
+      </div>
+      <div class="maincontainer">
+        <h3 class="d-flex align-items-center justify-content-between">今日任務<i class="fa fa-plus"></i></h3>
+        <ul>
+          <li>1<i class="fa fa-times"></i></li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+        <ul class="finish">
+          <li>123<span class="done">已完成</span></li>
+          <li>123<span class="del">作廢</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-07 other ">
+      <div class="sectitle">
+        <div class=" d-flex align-items-center">
+          <h2><i class="fas fa-list-ul"></i>計畫任務</h2>
+        </div>
+        <div class="seccontainer">
+          <h3 class="d-flex align-items-center justify-content-between">今日任務<i class="fa fa-plus"></i></h3>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+          </ul>
+        </div>
+      </div>
+      <div class="th" >
+        <div class="thcontainer">
+          <h3 class="d-flex align-items-center justify-content-between">今日任務<i class="fa fa-plus"></i></h3>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <audio data-music="0" src=""></audio>
+  <audio data-music="1" src="10s audio/yisell_sound_2007_12_12_14_47_028591.mp3"></audio>
+  <audio data-music="2" src="10s audio/yisell_sound_2008040315075856980_88011.mp3"></audio>
+  <audio data-music="3" src="10s audio/yisell_sound_2008040315162181495_88011.mp3"></audio>
+  <audio data-music="4" src="10s audio/yisell_sound_2008040315173756060_88011.mp3"></audio>
+  <audio data-music="5" src="10s audio/yisell_sound_2008040416325851742_88011.mp3"></audio>
   <script src="jquery-3.4.1.min.js"></script>
   <script src="pomodoro.js"></script>
 </body>

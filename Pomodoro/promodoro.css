@@ -1,6 +1,7 @@
   :root {
     --timerfontcolor: #949494;
-    --timervalue:#E54343;
+    --timervalue: #E54343;
+    --circle: 400px;
   }
   
   html body.container-fluid, html {
@@ -17,30 +18,25 @@
     height: 100vh;
   }
   
-  .col-05 {
-    -ms-flex: 0 0 45%;
-    flex: 0 0 45%;
-    max-width: 45%;
-  }
-  
   .col-07 {
-    -ms-flex: 0 0 55%;
-    flex: 0 0 55%;
-    max-width: 55%;
+    -ms-flex: 0 0 55.7%;
+    flex: 0 0 55.7%;
+    max-width: 55.7%;
   }
   
-  .col-02 {
-    -ms-flex: 0 0 17%;
-    flex: 0 0 17%;
-    max-width: 17%;
+  .col-01 {
+    -ms-flex: 0 0 6.6%;
+    flex: 0 0 6.6%;
+    max-width: 6.6%;
   }
   
-  .col-010 {
-    -ms-flex: 0 0 83%;
-    flex: 0 0 83%;
-    max-width: 83%;
+  .col-04 {
+    -ms-flex: 0 0 37.7%;
+    flex: 0 0 37.7%;
+    max-width: 37.7%;
   }
-  .tran{
+  
+  .tran {
     transition: all 1s
   }
   /* ---------------------------------bar--------------------------------- */
@@ -48,7 +44,7 @@
   .leftbar {
     background-color: #FF7575;
     color: #fff;
-    padding: 0 0 7% 0;
+    padding-bottom: 5.6%;
     text-align: center
   }
   
@@ -69,12 +65,12 @@
     font-size: 34px;
     font-weight: 500;
     margin-top: auto;
-    margin-left: 15px;
   }
   
   .row .barlink.active {
     color: #E54343;
     background-color: #fff;
+    transition: cubic-bezier(0.215, 0.610, 0.355, 1) 0.5S
   }
   
   .row .barlink {
@@ -88,20 +84,18 @@
   }
   
   .leftbar .barlink {
-    padding-left: 16px;
+    /* padding-left: 16px; */
   }
   /* ---------------------------------list--------------------------------- */
   
-  .col-010.listpart {
+  .col-04.listpart {
     background-color: #ffffff;
-    padding: 0% 0% 10% 10%;
+    padding: 5% 5% 11% 5%;
   }
   
   .listcontainer {
-    margin-top: 10%;
     height: 75%;
     font-size: 18px;
-    /* background-color: #949494; */
     position: relative;
   }
   
@@ -182,6 +176,7 @@
     height: 10rem;
     background-image: -webkit-linear-gradient(top, #FF6D6D, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
     background-image: linear-gradient(top, #FF6D6D, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
+    background-image: linear-gradient(top, rgba(255, 255, 255, 0.5), , #FF6D6D rgba(255, 255, 255, 1));
   }
   
   ul {
@@ -202,10 +197,9 @@
   .textcontainter {
     border-radius: 5px;
     background-color: #f9f9f9;
-    margin-top: 5%;
-    margin-right: 18%;
+    margin-top: 25%;
     padding: 5% 8%;
-    height: 20%;
+    height: 22.6%;
   }
   
   .listline.first {
@@ -217,7 +211,7 @@
   .col-07.timerpart {
     background-color: #f9f9f9;
     padding: 0 4%;
-    height: 100vh;
+    /* height: 100vh; */
   }
   
   .timetopcontainer {
@@ -226,8 +220,8 @@
   }
   
   .timercircle {
-    width: 370px;
-    height: 370px;
+    width: var(--circle);
+    height: 50%;
     border: 3px solid #FF6D6D;
     border-radius: 50%;
     margin: 0 auto 0 auto;
@@ -235,18 +229,22 @@
   }
   
   .timercontainer {
+    /* height: 50%; */
     width: 100%;
     text-align: center;
   }
   
   .timervalue {
-    margin-top: 30%;
+    margin-top: 35%;
     font-size: 100px;
     font-weight: 700;
   }
   
   .bottontimercontainer {
-    margin-top: 3%;
+    /* margin-top: 13%; */
+    height: 30%;
+    display: flex;
+    align-items: center
   }
   
   .timernow {
@@ -255,6 +253,7 @@
     padding-left: 1rem;
     position: relative;
   }
+  
   .timernow::before {
     content: '';
     position: absolute;
@@ -265,6 +264,7 @@
     top: 27px;
     border-radius: 50%;
   }
+  
   .timernow::after {
     content: '\25b8';
     position: absolute;
@@ -272,7 +272,6 @@
     left: -33px;
     display: none;
   }
-  
   
   div.buttonsetup {
     width: 70%;
@@ -301,7 +300,116 @@
     font-weight: 500;
     line-height: 42px;
   }
-    
+  
   .fontgray {
     color: var(--timerfontcolor);
   }
+  /* ---------------------------------music--------------------------------- */
+  
+  .col-05 {
+    -ms-flex: 0 0 46.7%;
+    flex: 0 0 46.7%;
+    max-width: 46.7%;
+  }
+  
+  .l {
+    padding: 0 1.5% 0 7.5%;
+  }
+  
+  .r {
+    padding: 0 7.5% 0 1.5%;
+  }
+  
+  .musictitle {
+    height: 20%;
+  }
+  
+  .musiccontainer {
+    width: 100%;
+    height: 65%;
+    margin-bottom: 15%;
+    border-radius: 0 0 5px 5px;
+    font-size: 20px;
+  }
+  
+  .l .musiccontainer {
+    background-color: #FFE9E9;
+  }
+  
+  .r .musiccontainer {
+    background-color: #CCFFF4;
+  }
+  .row h2{
+    font-size: 30px;
+    color: #4a4a4a;
+    font-weight: 700;
+  }
+  .row h3 {
+    padding: 0 2rem;
+    color: #FFF;
+    height: 15%;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .l h3 {
+    background-color: #FF7575;
+  }
+  
+  .r h3 {
+    background-color: #50E3C2;
+  }
+  /* ------------------------------------------------------------------------- */
+  .main{
+padding:0 6.3%;
+  }
+  .other{
+    background-color: #f9f9f9;
+  }
+  .maintitle{
+    height: 20%;
+  }
+  .maincontainer{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15%;
+    border-radius: 5px 5px;
+    font-size: 20px;
+  }
+  .main .maincontainer{
+    background-color: #FFE9E9;
+  }
+  .main h3{
+    background-color: #FF7575;
+    height: 5rem;
+  }
+  .main li{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 0 2rem 
+  }
+  .fa-times{
+    color: #717171;
+  }
+  .main li:hover{
+    background-color: #FFCDCD;
+  }
+  .main ul{
+    padding:0;
+  }
+ul.finish{
+  background-color: #E3E3E3;
+  border-radius: 0 0 5px 5px;
+}
+.done,.del{
+  font-size: 14px;
+}
+.done{
+  color: #04BAA2;
+}
+.del{
+  color: #FF0000;
+}
