@@ -1,20 +1,21 @@
 $(window).resize(function () {
   root.style.setProperty("--circle", $(".timercircle").css("height"))
+
 })
 $(document).ready(function () {
   root.style.setProperty("--circle", $(".timercircle").css("height"))
   $(".listnumber").text(`${done}/${totallist}`)
-
-  // $(".col-04 ,.col-07").addClass("d-none")
 })
 // ------------------------backgroundsetup------------------------
 function bggreennormal() {
-  i = 300
+  i = 5
   root.style.setProperty("--timerfontcolor", "#969696")
   root.style.setProperty("--timervalue", "#4EB6A8")
   $(".timerpart").css("background", "#f9f9f9")
   $(".timercircle").css({ "backgroundColor": "#E0FFFB", "border": "3px solid #50E3C2 " })
-  $('<style>.listline.first::after{background-color:#E0FFFB;color: #4EB6A8 ; border: 2px solid #06BCA4 }</style > ').appendTo('head')
+  $('<style>h1.donow::after{background-color:#E0FFFB;color: #4EB6A8 ; border: 2px solid #06BCA4 }</style > ').appendTo('head')
+  $('<style>h1.donow::before{background-image: -webkit-linear-gradient(top, #FF6D6D, #06BCA4, #06BCA4);background-image: linear-gradient(top, #FF6D6D, #06BCA4, #06BCA4);}</style > ').appendTo('head')
+
 }
 function bggreenstart() {
   $(".timerpart").css("background", "#E6FDF8")
@@ -22,13 +23,14 @@ function bggreenstart() {
   root.style.setProperty("--timervalue", "#FFF")
 }
 function bgrednormal() {
-  i = 1500
+  i = 25
   $(".timervalue").text("25:00")
   $(".timerpart").css("background", "#f9f9f9")
   $(".timercircle").css({ "backgroundColor": "#FFEBEB", "border": "3px solid #FF6D6D" })
   root.style.setProperty("--timerfontcolor", "#949494")
   root.style.setProperty("--timervalue", "#E54343")
-  $('<style>.listline.first::after{background-color:#FFEDED;color: #FF6D6D ; border: 2px solid #FF6D6D }</style > ').appendTo('head')
+  $('<style>h1.donow::after{background-color:#FFEDED;color: #FF6D6D ; border: 2px solid #FF6D6D }</style > ').appendTo('head')
+  $('<style>h1.donow::before{background-image: -webkit-linear-gradient(top, #FFf, rgba(255, 109, 109), rgba(255, 109, 109));background-image: linear-gradient(top, #FFf, rgba(255, 109, 109), rgba(255, 109, 109));}</style > ').appendTo('head')
 
 }
 function bgredstart() {
@@ -39,46 +41,60 @@ function bgredstart() {
 }
 // ------------------------todolist------------------------
 
-$("input[type='text']").keypress(function (e) {
+$(".listpart input[type='text']").keypress(function (e) {
   if (e.which === 13) {
     addlist()
   };
 })
 $(".addlist").on("click", addlist)
 
-$("li.listline").on("click", function () {
-  $("li.listline.click").removeClass("click")
+$(".listpart ul.list").on("click", "li", function () {
+  $("ul.list li.click").removeClass("click")
   $(this).addClass("click")
-  $(".first").text($(this).text())
+  for (var i = 0; i < $(".listpart li").length; i++) {
+    var copyli = document.querySelectorAll(".main li")
+    if (copyli[i].textContent == $(this).text()) {
+      copyli[i].classList.add("click")
+    }
+    else {
+      copyli[i].classList.remove("click")
+    }
+  }
+
+  $(".donow").text($(this).text())
+  $(".timernow").text($(".donow").text())
+  
+
   bgrednormal()
-  btswich = true
-  buttionswich()
+  buttionswich(true)
   $("li.listline").removeClass("end")
   $("li.listline:last").addClass("end")
+
   if ($(this).text() == "Break time") {
     breaktime()
   }
 })
 function addlist() {
-  $("ul.list").append(`<li class="listline"><span>${$("input[type='text']").val()}</span></li>`);
-  $("input[type='text']").val("");
+  if ($("li.listline").length <= 1) {
+    $('<style>h1.donow::before{width: 1px;}</style > ').appendTo('head')
+  }
+  $("ul.list").append(`<li class="listline"><span>${$(".listpart input[type='text']").val()}</span><span class="addin"><i class="fa fa-times"></i></span></li>`);
+  $(".listpart input[type='text']").val("");
+  $(".main li").removeClass("listline break end")
   $("li.listline").removeClass("end")
   $("li.listline:last").addClass("end")
-  if ($("li.listline").length = 1) {
-    $("li.listline:first").addClass("first")
-  }
+  $(this).val("");
   totallist++
   $(".listnumber").text(`${done}/${totallist}`)
+
 }
-var totallist = $("li.listline").length - 1
+var totallist = $("li.listline").length
 // ------------------------break------------------------
 function breaktime() {
   $(".timervalue").text("05:00")
   bggreennormal()
-  btswich = true
-  buttionswich()
-  $(".first").text("Break time")
-  $(".timernow").text($(".first").text())
+  buttionswich(true)
+  $(".timernow").text($(".donow").text())
 }
 $("li.listline.break").on("click", function () {
   breaktime()
@@ -87,24 +103,26 @@ $("li.listline.break").on("click", function () {
 var root = document.documentElement
 var tn = document.querySelector(".timernow")
 var btswich;
-var i = 1500
+var i = 25
 var done = 0
 
 
-function buttionswich() {
-  if (btswich) {
+function buttionswich(e) {
+  if (e === true) {
     $(".timerstart").css("display", "inline")
     $(".timerstop,.timercancel").css("display", "none")
     $(".buttonsetup").removeClass("d-flex justify-content-between")
     $('<style>.timernow::after{display: none}</style > ').appendTo('head')
     $('<style>.timernow::before{display: inline;}</style > ').appendTo('head')
+    btswich = true
   }
-  else {
+  else if (e === false) {
     $(".timerstart").css("display", "none")
     $(".timerstop,.timercancel").css("display", "inline")
     $(".buttonsetup").addClass("d-flex justify-content-between")
     $('<style>.timernow::after{display: inline}</style > ').appendTo('head')
     $('<style>.timernow::before{display: none;}</style > ').appendTo('head')
+    btswich = false
   }
 }
 
@@ -116,30 +134,40 @@ $(".timerstart").on("click", function () {
   else {
     bgredstart()
   }
-  btswich = false
-  buttionswich()
-  $(".timernow").text($(".first").text())
+  buttionswich(false)
+  $(".timernow").text($(".donow").text())
   timer()
 })
 $(".timerstop").on("click", function () {
-  btswich = true
-  buttionswich()
+  buttionswich(true)
   musicstop()
 })
-$(".timercancel").on("click", function () {
-  btswich = true
-  buttionswich()
-  $("li.listline:first").remove()
-  $("li.listline.click").remove()
-  $("li.listline:first").addClass("first")
-  if ($("li.listline:first").css("color") == "rgb(6, 188, 164)") {
+function deletethis(){
+  var listpartli = document.querySelectorAll(".listpart li")
+  listpartli.forEach(function (e) {
+    if (e.textContent == $("h1.donow").text()) {
+      e.remove()
+    }
+    
+    if ($("li.listline").length < 1) {
+      $('<style>h1.donow::before{width:0 }</style > ').appendTo('head')
+    }
+  if ($("h1.donow").text() == "Break time") {
     bggreennormal()
   }
   else {
     bgrednormal()
   }
-  $(".timernow").text($(".first").text())
+  $(".timernow").text($(".donow").text())
   musiccancel()
+  buttionswich(true)
+  $("li.click").remove()
+})
+$("h1.donow").text($("li.listline:first").text())
+}
+$(".timercancel").on("click", function () {
+  $("ul.finish").append(`<li>${$("h1.donow").text()}<span class="del">作廢</span></li>`)
+  deletethis()
 })
 
 // ------------------------date------------------------
@@ -194,18 +222,16 @@ function timer() {
 
   if (i == 0) {
     clearTimeout(timer)
-    done++
-    $(".listnumber").text(`${done}/${totallist}`)
-    if ($("li.listline:first").text() == "Break time") {
-      $("li.listline:first").remove()
-      $("li.listline.click").remove()
-      $("li.listline:first").addClass("first")
-      bgrednormal()
-      btswich = true
-      buttionswich()
-    }
-    else if ($("li.listline:first").text() != "Break time") {
+    if ($("h1.donow").text() !== "Break time") {
       breaktime()
+      done++
+      $(".listnumber").text(`${done}/${totallist}`)
+      $("ul.finish").append(`<li>${$("h1.donow").text()}<span class="done">已完成</span></li>`)
+    }
+    if ($("h1.donow").text() == "Break time") {
+      $("h1.donow").text($(".listline:first").text())
+      bgrednormal()
+      buttionswich(true)
     }
   }
   else if (btswich === true) {
@@ -220,30 +246,46 @@ function timer() {
 // ------------------------bar------------------------
 $(".mission").on("click", function () {
   $(".listpart,.timerpart").css("display", "inline")
-  $(".l,.r").css("display", "none")
+  $(".l,.r,.main,.sec").css("display", "none")
   $(".barlink").removeClass("active")
   $(this).addClass("active")
+  root.style.setProperty("--circle", $(".timercircle").css("height"))
 })
-
+// var l = 0
 $(".analytics").on("click", function () {
+  $(".main,.sec").css("display", "inline")
   $(".listpart,.timerpart,.l,.r").css("display", "none")
   $(".barlink").removeClass("active")
   $(this).addClass("active")
+
+  // if (l < 1) {
+  //   $(".main .list li:first").remove()
+  //   $(".listpart .list li:first").text($(".listpart .list li:nth-of-type(2)").text())
+  // }
+  // else if(l==1){
+
+  //   $(".finish li").remove()
+  //   $(".list li").remove()
+  //   $(".seccontainer li").remove()
+  //   $(".thcontainer li").remove()
+  // }
+  // l++
 })
 
 $(".musicplayer").on("click", function () {
-  $(".listpart,.timerpart").css("display", "none")
   $(".col-05.l,.col-05.r").css("display", "inline")
+  $(".listpart,.timerpart,.main,.sec").css("display", "none")
   $(".barlink").removeClass("active")
   $(this).addClass("active")
 
 })
-$(".l,.r").css("display", "none")
-$(".listpart,.timerpart").css("display", "none")
+$(".l,.r,.main,.sec").css("display", "none")
+$(".listpart,.timerpart").css("display", "inline")
+// $(".main,.sec").css("display","inline")
 // --------------------------------music-------------------------------
 
 function musicplay() {
-  if ($(".first").text() == "Break time") {
+  if ($("h1.donow").text() == "Break time") {
     var playmb = $("input[name='mb']:checked").val()
     var audiomb = document.querySelector(`audio[data-music='${playmb}']`)
     audiomb.play()
@@ -256,7 +298,7 @@ function musicplay() {
 }
 
 function musicstop() {
-  if ($(".first").text() == "Break time") {
+  if ($("h1.donow").text() == "Break time") {
     var playmb = $("input[name='mb']:checked").val()
     var audiomb = document.querySelector(`audio[data-music='${playmb}']`)
     audiomb.pause()
@@ -264,22 +306,70 @@ function musicstop() {
   else {
     var playmp = $("input[name='mp']:checked").val()
     var audiomp = document.querySelector(`audio[data-music='${playmp}']`)
-    // audiomp.pause()
     audiomp.pause()
   }
 }
 
 function musiccancel() {
-  if ($(".first").text() == "Break time") {
+  if ($("h1.donow").text() == "Break time") {
     var playmb = $("input[name='mb']:checked").val()
     var audiomb = document.querySelector(`audio[data-music='${playmb}']`)
-    // audiomb.pause()
-  audiomb.load()
+    audiomb.load()
   }
   else {
     var playmp = $("input[name='mp']:checked").val()
     var audiomp = document.querySelector(`audio[data-music='${playmp}']`)
-    // audiomp.pause()
     audiomp.load()
   }
 }
+
+// --------------------------------adding-------------------------------
+$(".main ul,.sec ul").on("mouseenter", "li", function () {
+  $("span", this).toggleClass("d-inline")
+}).on("mouseleave", "li", function () {
+  $("span", this).toggleClass("d-inline")
+})
+
+$(".main ul,.sec ul").on("click", "i", function () {
+  // deletethis()
+  var listpartli = document.querySelectorAll(".listpart li")
+listpartli.forEach(function (e) {
+  if (e.textContent == $(this).parent().parent().text()) {
+    $("ul.finish").append(`<li>${$(this).parent().parent().text()}<span class="del">作廢</span></li>`)
+    e.remove()
+  }})
+  $(this).parent().parent().remove()
+})
+
+
+
+
+$(".maincontainer .fa-plus").on("click", function () {
+  $(".maincontainer input[type='text']").fadeToggle(1000);
+  $(this).toggleClass("roo")
+})
+$(".seccontainer .fa-plus").on("click", function () {
+  $(".seccontainer input[type='text']").fadeToggle(1000);
+  $(this).toggleClass("roo")
+})
+$(".thcontainer .fa-plus").on("click", function () {
+  $(".thcontainer input[type='text']").fadeToggle(1000);
+  $(this).toggleClass("roo")
+})
+$(".seccontainer input[type='text']").keypress(function (e) {
+  if (e.which === 13) {
+    $(".seccontainer ul").append(`<li>${this.value}<span class="addin"><i class="fas fa-file-import"></i>　匯入任務　<i class="fa fa-times"></i></span></li>`);
+    $(this).val("");
+  };
+})
+$(".thcontainer input[type='text']").keypress(function (e) {
+  if (e.which === 13) {
+    $(".thcontainer ul").append(`<li>${this.value}<span class="addin"><i class="fas fa-file-import"></i>　匯入任務　<i class="fa fa-times"></i></span></li>`);
+    $(this).val("");
+  };
+})
+$(".maincontainer input[type='text']").keypress(function (e) {
+  if (e.which === 13) {
+    addlist()
+  };
+})
