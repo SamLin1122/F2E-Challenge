@@ -41,12 +41,6 @@ function bgredstart() {
 }
 // ------------------------todolist------------------------
 
-$(".listpart input[type='text']").keypress(function (e) {
-  if (e.which === 13) {
-    addlist()
-  };
-})
-$(".addlist").on("click", addlist)
 
 $(".listpart ul.list").on("click", "li", function () {
   $("ul.list li.click").removeClass("click")
@@ -63,7 +57,7 @@ $(".listpart ul.list").on("click", "li", function () {
 
   $(".donow").text($(this).text())
   $(".timernow").text($(".donow").text())
-  
+
 
   bgrednormal()
   buttionswich(true)
@@ -74,27 +68,37 @@ $(".listpart ul.list").on("click", "li", function () {
     breaktime()
   }
 })
+
+// ------------------------addlist------------------------
 function addlist() {
-  if ($("li.listline").length <= 1) {
+  if ($("li.listline").length == 0) {
+    $(".donow").text($(".listpart input[type='text']").val())
     $('<style>h1.donow::before{width: 1px;}</style > ').appendTo('head')
+  }
+  else{
+    $(".timerstart").css("display", "inline")
   }
   $("ul.list").append(`<li class="listline"><span>${$(".listpart input[type='text']").val()}</span><span class="addin"><i class="fa fa-times"></i></span></li>`);
   $(".listpart input[type='text']").val("");
   $(".main li").removeClass("listline break end")
   $("li.listline").removeClass("end")
   $("li.listline:last").addClass("end")
-  $(this).val("");
   totallist++
   $(".listnumber").text(`${done}/${totallist}`)
-
+  $(".timernow").text($(".donow").text())
 }
+$(".listpart input[type='text']").keypress(function (e) {
+  if (e.which === 13) {
+    addlist()
+  };
+})
+$(".addlist").on("click", addlist)
 var totallist = $("li.listline").length
 // ------------------------break------------------------
 function breaktime() {
   $(".timervalue").text("05:00")
   bggreennormal()
   buttionswich(true)
-  $(".timernow").text($(".donow").text())
 }
 $("li.listline.break").on("click", function () {
   breaktime()
@@ -142,32 +146,44 @@ $(".timerstop").on("click", function () {
   buttionswich(true)
   musicstop()
 })
-function deletethis(){
+// -----------------------------delete-----------------------------------
+function deletethis() {
   var listpartli = document.querySelectorAll(".listpart li")
+  var mainli = document.querySelectorAll('.main li')
+  mainli.forEach(function (e) {
+    if (e.textContent == $("h1.donow").text()) {
+      e.remove()
+    }
+  })
   listpartli.forEach(function (e) {
     if (e.textContent == $("h1.donow").text()) {
       e.remove()
     }
-    
-    if ($("li.listline").length < 1) {
-      $('<style>h1.donow::before{width:0 }</style > ').appendTo('head')
-    }
-  if ($("h1.donow").text() == "Break time") {
+  })
+
+  if ($("li.listline").length < 1) {
+    $('<style>h1.donow::before{width:0 }</style > ').appendTo('head')
+  }
+  bgrednormal()
+  $(".timernow").text($(".donow").text())
+  musiccancel()
+  buttionswich(true)
+  $("li.click").remove()
+  $("h1.donow").text($("li.listline:first").text())
+  $(".timernow").text($(".donow").text())
+  if ($(".listline").length == 0) {
+    $(".timerstart").css("display", "none")
+  }
+}
+$(".timercancel").on("click", function () {
+  $("ul.finish").append(`<li>${$("h1.donow").text()}<span class="del">作廢</span></li>`)
+  deletethis()
+  if ($(".donow").text() == "Break time") {
     bggreennormal()
   }
   else {
     bgrednormal()
   }
-  $(".timernow").text($(".donow").text())
-  musiccancel()
-  buttionswich(true)
-  $("li.click").remove()
-})
-$("h1.donow").text($("li.listline:first").text())
-}
-$(".timercancel").on("click", function () {
-  $("ul.finish").append(`<li>${$("h1.donow").text()}<span class="del">作廢</span></li>`)
-  deletethis()
 })
 
 // ------------------------date------------------------
@@ -219,22 +235,30 @@ function timer() {
     sec = "0" + sec
   }
 
-
   if (i == 0) {
     clearTimeout(timer)
-    if ($("h1.donow").text() !== "Break time") {
-      breaktime()
-      done++
-      $(".listnumber").text(`${done}/${totallist}`)
-      $("ul.finish").append(`<li>${$("h1.donow").text()}<span class="done">已完成</span></li>`)
-    }
+    musiccancel()
+
     if ($("h1.donow").text() == "Break time") {
       $("h1.donow").text($(".listline:first").text())
       bgrednormal()
       buttionswich(true)
+      $(".timernow").text($(".donow").text())
+      if ($(".listline").length == 0) {
+        $(".timerstart").css("display", "none")
+      }
+    }
+    else if ($("h1.donow").text() !== "Break time") {
+      done++
+      $(".listnumber").text(`${done}/${totallist}`)
+      $("ul.finish").append(`<li>${$("h1.donow").text()}<span class="done">已完成</span></li>`)
+      deletethis()
+      breaktime()
+      $("h1.donow").text("Break time")
+      $(".timernow").text($(".donow").text())
     }
   }
-  else if (btswich === true) {
+  else if (btswich == true) {
     clearTimeout(timer)
   }
   else {
@@ -251,25 +275,12 @@ $(".mission").on("click", function () {
   $(this).addClass("active")
   root.style.setProperty("--circle", $(".timercircle").css("height"))
 })
-// var l = 0
+
 $(".analytics").on("click", function () {
   $(".main,.sec").css("display", "inline")
   $(".listpart,.timerpart,.l,.r").css("display", "none")
   $(".barlink").removeClass("active")
   $(this).addClass("active")
-
-  // if (l < 1) {
-  //   $(".main .list li:first").remove()
-  //   $(".listpart .list li:first").text($(".listpart .list li:nth-of-type(2)").text())
-  // }
-  // else if(l==1){
-
-  //   $(".finish li").remove()
-  //   $(".list li").remove()
-  //   $(".seccontainer li").remove()
-  //   $(".thcontainer li").remove()
-  // }
-  // l++
 })
 
 $(".musicplayer").on("click", function () {
@@ -281,7 +292,6 @@ $(".musicplayer").on("click", function () {
 })
 $(".l,.r,.main,.sec").css("display", "none")
 $(".listpart,.timerpart").css("display", "inline")
-// $(".main,.sec").css("display","inline")
 // --------------------------------music-------------------------------
 
 function musicplay() {
@@ -331,14 +341,25 @@ $(".main ul,.sec ul").on("mouseenter", "li", function () {
 })
 
 $(".main ul,.sec ul").on("click", "i", function () {
-  // deletethis()
   var listpartli = document.querySelectorAll(".listpart li")
-listpartli.forEach(function (e) {
-  if (e.textContent == $(this).parent().parent().text()) {
-    $("ul.finish").append(`<li>${$(this).parent().parent().text()}<span class="del">作廢</span></li>`)
-    e.remove()
-  }})
+  var a = $(this).parent().parent().text()
+  listpartli.forEach(function (e) {
+    if (e.textContent == a) {
+      $("ul.finish").append(`<li>${a}<span class="del">作廢</span></li>`)
+      e.remove()
+      $(".donow").text($(".listline:first").text())
+      $(".timernow").text($(".donow").text())
+      if ($("li.listline").length < 1) {
+        $('<style>h1.donow::before{width:0 }</style > ').appendTo('head')
+      }
+    }
+  })
+  $(".listline").removeClass("end")
+  $(".listline:last").addClass("end")
   $(this).parent().parent().remove()
+  if ($(".listline").length == 0) {
+    $(".timerstart").css("display", "none")
+  }
 })
 
 
@@ -356,6 +377,7 @@ $(".thcontainer .fa-plus").on("click", function () {
   $(".thcontainer input[type='text']").fadeToggle(1000);
   $(this).toggleClass("roo")
 })
+
 $(".seccontainer input[type='text']").keypress(function (e) {
   if (e.which === 13) {
     $(".seccontainer ul").append(`<li>${this.value}<span class="addin"><i class="fas fa-file-import"></i>　匯入任務　<i class="fa fa-times"></i></span></li>`);
@@ -370,6 +392,20 @@ $(".thcontainer input[type='text']").keypress(function (e) {
 })
 $(".maincontainer input[type='text']").keypress(function (e) {
   if (e.which === 13) {
-    addlist()
+    if ($("li.listline").length == 0) {
+      $(".donow").text($(this).val())
+      $('<style>h1.donow::before{width:1px }</style > ').appendTo('head')
+    }
+    $("ul.list").append(`<li class="listline"><span>${$(this).val()}</span><span class="addin"><i class="fa fa-times"></i></span></li>`);
+    $(".main li").removeClass("listline break end")
+    $(this).val("");
+    $("li.listline").removeClass("end")
+    $("li.listline:last").addClass("end")
+    totallist++
+    $(".listnumber").text(`${done}/${totallist}`)
+    $(".timernow").text($(".donow").text())
+    if ($(".listline").length !== 0) {
+      $(".timerstart").css("display", "inline")
+    }
   };
 })
